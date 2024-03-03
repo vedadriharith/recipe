@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Book</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding-top: 20px;
+        }
+        .recipe-card {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .recipe-card .delete-btn {
+            color: #fff;
+            cursor: pointer;
+            float: right;
+        }
+        /* Additional custom styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Recipe Book</h1>
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="col-md-6">
+                <div class="recipe-card p-4 mb-4">
+                    <h2 class="mb-3">{{ recipe.name }}</h2>
+                    <a class="delete-btn" href="{{ url_for('delete_recipe', index=loop.index0) }}">Delete</a>
+                    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                    <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('add_recipe') }}">Add Recipe</a>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if you need Bootstrap JavaScript components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

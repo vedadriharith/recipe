@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Recipe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+        li strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Recipe</h1>
+    <form action="{{ url_for('search_recipe') }}" method="post">
+        <label for="query">Search:</label><br>
+        <input type="text" id="query" name="query" required><br>
+        <input type="submit" value="Search">
+    </form>
+    <h2>Results for "{{ query }}"</h2>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <strong>{{ recipe.name }}</strong>
+            <p>Ingredients: {{ recipe.ingredients }}</p>
+            <p>Instructions: {{ recipe.instructions }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
